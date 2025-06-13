@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas - Países y Capitales</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px 15px;
+            text-align: left;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.3s ease;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e3f2fd;
+            transform: scale(1.01);
+        }
+
+        .flag {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .country {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .capital {
+            color: #666;
+            font-style: italic;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #555;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Países y sus Capitales</h1>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>País</th>
+                        <th>Capital</th>
+                        <th>Continente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="flag">🇪🇨</span><span class="country">Ecuador</span></td>
+                        <td class="capital">Quito</td>
+                        <td>América del Sur</td>
+                    </tr>
+                    <tr>
+                        <td><span class="flag">🇯🇵</span><span class="country">Japón</span></td>
+                        <td class="capital">Tokio</td>
+                        <td>Asia</td>
+                    </tr>
+                    <tr>
+                        <td><span class="flag">🇫🇷</span><span class="country">Francia</span></td>
+                        <td class="capital">París</td>
+                        <td>Europa</td>
+                    </tr>
+                    <tr>
+                        <td><span class="flag">🇦🇺</span><span class="country">Australia</span></td>
+                        <td class="capital">Canberra</td>
+                        <td>Oceanía</td>
+                    </tr>
+                    <tr>
+                        <td><span class="flag">🇨🇦</span><span class="country">Canadá</span></td>
+                        <td class="capital">Ottawa</td>
+                        <td>América del Norte</td>
+                    </tr>
+                    <tr>
+                        <td><span class="flag">🇪🇬</span><span class="country">Egipto</span></td>
+                        <td class="capital">El Cairo</td>
+                        <td>África</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <a href="index.html" class="back-link">← Volver al menú principal</a>
+    </div>
+</body>
+</html>

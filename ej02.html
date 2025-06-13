@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enlaces y Listas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #11998e;
+        }
+
+        h2 {
+            color: #11998e;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .social-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: white;
+            margin: 10px 0;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #38ef7d;
+            transition: transform 0.3s ease;
+        }
+
+        li:hover {
+            transform: translateX(5px);
+        }
+
+        li::before {
+            content: "🎯";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .back-link {
+            display: inline-block;
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enlaces y Listas</h1>
+        
+        <div class="section">
+            <h2>Mi Red Social Favorita</h2>
+            <p>Puedes encontrarme en mi red social favorita:</p>
+            <a href="https://www.tiktok.com/" target="_blank" class="social-link">
+                📸 Visitar tiktok
+            </a>
+        </div>
+
+        <div class="section">
+            <h2>Mis Pasatiempos Favoritos</h2>
+            <ul>
+                <li>Programación y desarrollo web</li>
+                <li>Lectura de libros de ciencia ficción</li>
+                <li>Fotografía digital y edición de imágenes</li>
+                <li>Escuchar música y tocar guitarra</li>
+                <li>Jugar videojuegos en línea</li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="back-link">← Volver al menú principal</a>
+    </div>
+</body>
+</html>

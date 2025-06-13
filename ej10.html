@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Raul Palacios - Portafolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variables CSS actualizadas para un tema oscuro más refinado */
+        :root {
+            --bg-primary: #0a0a0a; /* Fondo muy oscuro */
+            --bg-secondary: #1a1a1a; /* Fondo para secciones */
+            --text-primary: #f0f0f0; /* Color principal del texto */
+            --text-secondary: #a0a0a0; /* Texto secundario */
+            --accent: #00bcd4; /* Azul cian brillante como acento (material design) */
+            --accent-dark: #00838f; /* Variante más oscura del acento */
+            --card-shadow: rgba(0, 0, 0, 0.4);
+            --border-color: #333;
+        }
+
+        /* Reset y estilos base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            scroll-behavior: smooth; /* Desplazamiento suave para anclas */
+        }
+
+        /* Barra de navegación sticky */
+        nav {
+            background-color: var(--bg-secondary);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--card-shadow);
+        }
+
+        nav .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after { /* Clase active para scroll-spy */
+            width: 100%;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active { /* Clase active para scroll-spy */
+            color: var(--accent);
+        }
+
+        /* Header / Hero Section */
+        .hero {
+            background-color: var(--bg-primary);
+            padding: 4rem 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 70px); /* Ajustar a la altura de la nav */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before { /* Fondo sutil con gradiente */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, var(--accent-dark) 0%, transparent 40%),
+                        radial-gradient(circle at bottom right, var(--accent-dark) 0%, transparent 40%);
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            opacity: 0; /* Empieza invisible */
+        }
+
+        /* Keyframes para animaciones de hero */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        /* Contenedor principal */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 2rem auto;
+            gap: 2rem;
+            padding: 0 1rem;
+            align-items: flex-start; /* Alineación para el diseño de columna */
+        }
+
+        main, aside {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px var(--card-shadow);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease-in-out;
+        }
+
+        main {
+            flex: 2;
+            min-width: 60%; /* Asegura que no se haga demasiado pequeño */
+        }
+
+        aside {
+            flex: 1;
+            min-width: 300px; /* Asegura un ancho mínimo para el aside */
+        }
+
+        section {
+            margin-bottom: 2.5rem;
+            animation: fadeIn 0.8s ease-out; /* Animación para secciones */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+
+        h2 {
+            border-left: 5px solid var(--accent);
+            padding-left: 0.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 0.7rem;
+            background-color: #2a2a2a;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid #3a3a3a;
+            color: var(--text-primary);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1rem;
+        }
+
+        .skills-list span {
+            background: var(--accent-dark);
+            color: #fff;
+            padding: 0.6rem 1rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .skills-list span:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Galería de imágenes mejorada con Lightbox */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--accent);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 150px; /* Altura fija para miniaturas */
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Estilos del Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+            background-color: #fff;
+            padding: 5px;
+        }
+
+        .lightbox-caption-text {
+            color: #fff;
+            font-size: 1.3em;
+            margin-top: 15px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            font-size: 3em;
+            color: #fff;
+            cursor: pointer;
+            z-index: 2001;
+            padding: 5px 15px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+            padding: 1.8rem;
+            margin-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Media Queries para Responsividad */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            main, aside {
+                min-width: unset; /* Reinicia el min-width */
+                width: 100%; /* Ocupa todo el ancho */
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            nav .nav-container {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav ul li {
+                margin: 0.5rem 1rem;
+            }
+            .lightbox-close {
+                top: 10px;
+                right: 10px;
+                font-size: 2.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .gallery {
+                grid-template-columns: 1fr; /* Una columna en móviles pequeños */
+            }
+            .lightbox-caption-text {
+                font-size: 1em;
+                padding: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="#hero" class="logo">Raul Palacios</a>
+            <ul>
+                <li><a href="#sobre-mi">Sobre mí</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#habilidades">Habilidades</a></li>
+                <li><a href="#galeria">Pasatiempos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Raul Palacios</h1>
+            <p>Desarrollador Web Full-Stack | Innovación y Soluciones Creativas</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <main>
+            <section id="sobre-mi">
+                <h2>Sobre mí</h2>
+                <p>Soy un apasionado desarrollador web con 3 años de experiencia en la creación de soluciones digitales robustas y escalables. Me especializo en el desarrollo frontend con **React.js** y en el backend con **Node.js**, siempre buscando las mejores prácticas y tecnologías emergentes para entregar productos de alta calidad.</p>
+                <p>Mi enfoque se centra en construir experiencias de usuario intuitivas y funcionales, con un fuerte compromiso con el código limpio, el rendimiento y la mantenibilidad. Disfruto cada etapa del ciclo de desarrollo, desde la conceptualización hasta la implementación y el despliegue.</p>
+            </section>
+
+            <section id="experiencia">
+                <h2>Experiencia</h2>
+                <p><strong>Desarrollador Full-Stack, DevTech Solutions (Enero 2022 - Junio 2025)</strong></p>
+                <ul>
+                    <li>Lideré el desarrollo y mantenimiento de interfaces de usuario interactivas utilizando React y Redux, mejorando la usabilidad en un 25%.</li>
+                    <li>Diseñé e implementé APIs RESTful con Node.js y Express, interactuando con bases de datos MongoDB y PostgreSQL.</li>
+                    <li>Colaboré estrechamente con equipos de diseño UX/UI para traducir wireframes y maquetas en componentes funcionales.</li>
+                    <li>Participé activamente en revisiones de código y en la implementación de metodologías ágiles (Scrum) para asegurar entregas eficientes.</li>
+                </ul>
+            </section>
+
+            <section id="habilidades">
+                <h2>Habilidades</h2>
+                <div class="skills-list">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>JavaScript (ES6+)</span>
+                    <span>React.js</span>
+                    <span>Node.js</span>
+                    <span>Express.js</span>
+                    <span>MongoDB</span>
+                    <span>PostgreSQL</span>
+                    <span>Git & GitHub</span>
+                    <span>Figma</span>
+                    <span>Responsive Design</span>
+                    <span>Metodologías Ágiles</span>
+                    <span>Python</span>
+                </div>
+            </section>
+
+            <section id="galeria">
+                <h2>Galería de Pasatiempos</h2>
+                <p>Cuando no estoy programando, me gusta explorar el mundo y disfrutar de mis pasatiempos. Aquí tienes un vistazo:</p>
+                <div class="gallery">
+                    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1974&q=80', 'Explorando nuevos lugares con mi cámara.')">
+                        <img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Fotografía de Viajes">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80', 'Disfrutando de la música y componiendo.')">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Tocando la Guitarra">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80', 'Ciclismo de montaña para mantenerme activo.')">
+                        <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Ciclismo de Montaña">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80', 'Mis sesiones épicas de gaming.')">
+                        <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Gaming">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=1974&q=80', 'Experimentando con nuevas recetas en la cocina.')">
+                        <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Cocina">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1974&q=80', 'Cuidando mis plantas y conectando con la naturaleza.')">
+                        <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Jardinería">
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside>
+            <section id="contacto">
+                <h2>Contacto</h2>
+                <ul>
+                    <li>📧 <a href="mailto:raulpalacioslopez36@gmail.com" style="color: var(--text-primary); text-decoration: none;">raulpalacioslopez36@gmail.com</a></li>
+                    <li>📱 <a href="tel:+593989599715" style="color: var(--text-primary); text-decoration: none;">+593 98 959 9715</a></li>
+                    <li>📍 Guayaquil, Ecuador</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Redes Sociales</h2>
+                <ul>
+                    <li><a href="https://linkedin.com/in/raulpalacios" target="_blank" style="color: var(--text-primary); text-decoration: none;">LinkedIn: /raulpalacios</a></li>
+                    <li><a href="https://github.com/raulpalacios" target="_blank" style="color: var(--text-primary); text-decoration: none;">GitHub: /raulpalacios</a></li>
+                    <li><a href="https://twitter.com/raulpalaciosdev" target="_blank" style="color: var(--text-primary); text-decoration: none;">Twitter: /raulpalaciosdev</a></li>
+                </ul>
+            </section>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Raul Palacios - Portafolio Personal. Todos los derechos reservados.</p>
+    </footer>
+
+    <div class="lightbox-overlay" id="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img src="" alt="" id="lightbox-img">
+            <p id="lightbox-caption-text" class="lightbox-caption-text"></p>
+        </div>
+    </div>
+
+    <script>
+        // Función para abrir el Lightbox
+        function openLightbox(src, caption) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaptionText = document.getElementById('lightbox-caption-text');
+
+            lightboxImg.src = src;
+            lightboxImg.alt = caption;
+            lightboxCaptionText.textContent = caption;
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
+        }
+
+        // Función para cerrar el Lightbox
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restaura el scroll del fondo
+        }
+
+        // Cierra el lightbox si se hace clic fuera de la imagen (pero dentro del overlay)
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Cierra el lightbox con la tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' || event.key === 'Esc') {
+                closeLightbox();
+            }
+        });
+
+        // Script para el Scroll Spy en la navegación
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav ul li a');
+
+            function highlightNavLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - nav.offsetHeight - 20; // Ajuste para la barra de navegación sticky
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            const nav = document.querySelector('nav'); // Obtén la barra de navegación para su altura
+            window.addEventListener('scroll', highlightNavLink);
+            highlightNavLink(); // Llama al inicio para establecer el estado inicial
+        });
+    </script>
+</body>
+</html>
